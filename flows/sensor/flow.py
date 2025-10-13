@@ -7,6 +7,7 @@ from metaflow import (
     step,
     config_expr,
     project,
+    snowflake,
     schedule,
     Parameter,
     Config,
