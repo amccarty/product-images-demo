@@ -7,7 +7,7 @@ This example demonstrates:
 2. 🚚 Efficient data movement to a GPU cloud.
 3. 🧠 High-throughput autonomous inferencing, in this case, product image generation.
 
-## The system is divided into three flows
+### The system is divided into three flows
 
 1. `SensorFlow` which polls for changes in data periodically. When new data is available, it triggers →
 2. `RetrieveDescriptions` runs inside Snowflake. Upon completion, it triggers →
