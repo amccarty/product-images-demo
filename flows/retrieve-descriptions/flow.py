@@ -29,14 +29,14 @@ class RetrieveDescriptions(ProjectFlow):
 
     @step
     def start(self):
-        self.next(self.mid)
+        self.next(self.snowpark_query)
 
-    # @snowpark_card
-    # @snowpark(**config.compute)
+    @snowpark_card
+    @snowpark(**config.compute)
     @pypi(packages=config.deps)
     @card(id="data", type="blank", refresh_interval=1)
     @step
-    def mid(self):
+    def snowpark_query(self):
         from data_card import DataCard
         import langid
 
