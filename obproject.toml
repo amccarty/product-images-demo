@@ -3,7 +3,7 @@
 platform = 'dev-yellow.outerbounds.xyz'
 
 # ⬇️  Change these to match your project name
-project = 'product-images-demo'
+project = 'product_images_demo'
 title = 'Generate Product Images from Snowflake Data'
 
 # (optional) disable automatic application of a project-wide pyproject.toml
