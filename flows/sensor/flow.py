@@ -7,7 +7,6 @@ from metaflow import (
     step,
     config_expr,
     project,
-    snowflake,
     schedule,
     Parameter,
     Config,
@@ -31,7 +30,6 @@ class SensorFlow(SensorBase, ProjectFlow):
     force = Parameter("force-trigger", default=False)
 
     @card(type="blank")
-    @snowflake
     @step
     def start(self):
         if self.force:
