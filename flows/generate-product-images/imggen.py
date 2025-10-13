@@ -27,6 +27,9 @@ class ImgGen:
             if not only_load:
                 self.pipe = self.pipe.to(device)
 
+        model_size = dir_size_gb('/model')
+        print(f'Total model size: **{model_size}GB**')
+
     def prompt(self, prompts_batch):
         import torch
 
@@ -50,6 +53,16 @@ class ImgGen:
             image.save(buf, format="JPEG")
             yield prompt, buf.getvalue()
 
+def dir_size_gb(path):
+    total = 0
+    for root, _, files in os.walk(path):
+        for f in files:
+            try:
+                fp = os.path.join(root, f)
+                total += os.path.getsize(fp)
+            except FileNotFoundError:
+                pass
+    return total / 1024**3
 
 if __name__ == "__main__":
     ImgGen().load_model()
