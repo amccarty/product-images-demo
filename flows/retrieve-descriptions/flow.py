@@ -80,4 +80,4 @@ class RetrieveDescriptions(ProjectFlow):
 
 
 if __name__ == "__main__":
-    Sum()
+    RetrieveDescriptions()
