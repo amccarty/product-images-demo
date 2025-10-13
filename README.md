@@ -1,19 +1,18 @@
 
-# An Empty Outerbounds Project 👋🌱
+# Generate Product Images ❄️ → 🖼️  
 
-Use this as a blank slate for your own projects.
+This example demonstrates:
 
-Populate
+1. ❄️ Secure data processing inside Snowflake using `@snowpark`, triggered automatically when new data is available.
+2. 🚚 Efficient data movement to a GPU cloud.
+3. 🧠 High-throughput autonomous inferencing, in this case, product image generation.
 
-```
-flows/
-deployments/
-models/
-data/
-```
+The system is divided into three flows:
 
-subdirectories to add functionality in your project.
+1. `SensorFlow` which polls for changes in data periodically. When new data is available, it triggers →
+2. `RetrieveDescriptions` runs inside Snowflake. Upon completion, it triggers →
+3. `ProductImageFlow` which generates product images from the supplied descriptions
+  in parallel. 
 
-#### ➡️ For comprehensive documentation, see [the project section in the Outerbounds docs](https://docs.outerbounds.com)
-
-# product-images-demo
+Currently, a state-of-the-art image generation model, `Qwen-Image` is used to generate
+product images, relying on efficient parallelized autonmous inferencing on Outerbounds.

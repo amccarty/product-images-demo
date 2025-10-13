@@ -11,6 +11,7 @@ from metaflow import (
     Config,
     config_expr,
     gpu_profile,
+    trigger_on_finish,
     kubernetes,
     environment,
 )
@@ -20,7 +21,7 @@ from collections import Counter
 
 from snowpark_card import snowpark_card
 
-
+@trigger_on_finish(flow='SensorFlow')
 class RetrieveDescriptions(ProjectFlow):
 
     min_length = Parameter("min-length", default=10)
