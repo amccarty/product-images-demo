@@ -14,13 +14,14 @@ from metaflow import (
     kubernetes,
     environment,
 )
+from obproject import ProjectFlow
 from metaflow.integrations import ArgoEvent
 from collections import Counter
 
 from snowpark_card import snowpark_card
 
 
-class RetrieveDescriptions(FlowSpec):
+class RetrieveDescriptions(ProjectFlow):
 
     min_length = Parameter("min-length", default=10)
     config = Config("config", default="snowpark_config.json")

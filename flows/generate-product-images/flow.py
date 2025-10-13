@@ -19,6 +19,7 @@ from metaflow import (
     environment,
     nebius_checkpoints,
 )
+from obproject import ProjectFlow
 
 IMG_BATCH_SIZE = 8
 
@@ -27,10 +28,9 @@ def partition(lst, n):
     k = len(lst) // n
     return [lst[i * k : (i + 1) * k] for i in range(n)]
 
-
 @nebius_checkpoints(**config_expr("config.checkpoint"))
 @trigger(event="products_updated")
-class ProductImageFlow(FlowSpec):
+class ProductImageFlow(ProjectFlow):
 
     config = Config("config", default="imggen_config.json")
     product_run = Parameter("product-run")
