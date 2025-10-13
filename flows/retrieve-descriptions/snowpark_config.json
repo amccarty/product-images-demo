@@ -10,12 +10,12 @@
         "stage": "product_stage",
         "compute_pool": "tutorial_compute_pool",
         "image": "a3026273919071-mkb21361.registry.snowflakecomputing.com/tutorial_db/data_schema/tutorial_repository/my_job_image:latest",
-        "external_integration": ["ALL_ACCESS_INTEGRATION"],
+        "external_integration": ["ALL_ACCESS_INTEGRATION"]
     },
     "deps": {
         "langid2": "1.1.7",
         "snowflake": "1.8.0",
         "snowflake-connector-python": "3.18.0",
-        "snowflake-snowpark-python": "1.40.0",
-    },
+        "snowflake-snowpark-python": "1.40.0"
+    }
 }
