@@ -17,6 +17,7 @@ from metaflow import (
 )
 from metaflow.cards import Markdown
 from metaflow.integrations import ArgoEvent
+from obproject import ProjectFlow
 
 from sensorbase import SensorBase
 
