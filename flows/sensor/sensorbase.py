@@ -13,14 +13,18 @@ except ImportError:
     # pip install toml
     toml_parser = "toml.loads"
 
-class SensorBase(ProjectFlow):
+
+class SensorBase:
     config = Config("config", default="sensor.toml", parser=toml_parser)
 
     def query_snowflake(self, sql=None, template=None, card=False):
-        if card and hasattr(current, 'card'):
+        if card and hasattr(current, "card"):
+
             def _out(txt):
                 current.card.append(Markdown(txt))
+
         else:
+
             def _out(txt):
                 pass
 
@@ -31,13 +35,14 @@ class SensorBase(ProjectFlow):
                 fname = template
                 args = None
 
-            with open(f'sql/{fname}.sql') as f:
+            with open(f"sql/{fname}.sql") as f:
                 sql = (f.read(), args) if args else f.read()
-        
+
         _out(f"## 🛢️ Executing SQL")
         _out(f"{sql}")
-        
+
         from metaflow import Snowflake
+
         with Snowflake(integration=self.config.data.integration) as cn:
             with cn.cursor() as cur:
                 t = time.time()

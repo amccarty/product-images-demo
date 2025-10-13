@@ -20,10 +20,12 @@ from metaflow.integrations import ArgoEvent
 
 from sensorbase import SensorBase
 
+
 class SkipTrigger(Exception):
     pass
 
-class SensorFlow(SensorBase):
+
+class SensorFlow(SensorBase, ProjectFlow):
     force = Parameter("force-trigger", default=False)
 
     @card(type="blank")
@@ -48,7 +50,7 @@ class SensorFlow(SensorBase):
             except:
                 current.card.append(Markdown(f"*Previous successful runs not found*"))
                 prev = None
-        [(self.value,)] = self.query_snowflake(template='sensor', card=True)
+        [(self.value,)] = self.query_snowflake(template="sensor", card=True)
         print(f"Previous value {prev}, new value {self.value}")
         if self.value == prev:
             print("no changes")
