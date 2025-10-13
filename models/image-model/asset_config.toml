@@ -1,0 +1,6 @@
+provider = "Qwen/Qwen-Image"
+name = "Product Image Generation Model"
+id = "product-image"
+kind = "text2image"
+blobs = ["Qwen/Qwen-Image"]
+description = "A text to image model used to generate product images"
