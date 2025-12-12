@@ -38,7 +38,7 @@ class ProductImageFlow(ProjectFlow):
     num_parallel = Parameter("num-parallel", default=4)
 
     @gpu_profile(interval=1)
-    @kubernetes(compute_pool="obp-nebius-h100-1gpu", **config.compute)
+    @kubernetes(compute_pool="obp-h100-1gpu", **config.compute)
     @checkpoint(load_policy=None)
     @pypi(**config.deps)
     @step

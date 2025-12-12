@@ -1,8 +1,7 @@
 {
     "compute": {
         "account": "pfb48862",
-        "user": "VILLE_SNOWPARK",
-        "password": "rcPRHs4pio!aGKy",
+        "user": "merced_user",
         "role": "test_role",
         "database": "TUTORIAL_DB",
         "warehouse": "TUTORIAL_WAREHOUSE",
@@ -19,3 +18,4 @@
         "snowflake-snowpark-python": "1.40.0"
     }
 }
+

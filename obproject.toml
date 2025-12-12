@@ -1,6 +1,6 @@
 
 # ⬇️  Change this to match the URL of your Outerbounds deployment
-platform = 'dev-yellow.outerbounds.xyz'
+platform = 'merced.obp.outerbounds.com'
 
 # ⬇️  Change these to match your project name
 project = 'product_images_demo'
@@ -14,3 +14,4 @@ title = 'Generate Product Images from Snowflake Data'
 # [dev-assets]
 # branch = 'dev'
 # read-only = true
+
