@@ -31,8 +31,8 @@ class RetrieveDescriptions(ProjectFlow):
     def start(self):
         self.next(self.query)
 
-    # @snowpark_card
-    # @snowpark(**config.compute)
+    @snowpark_card
+    @snowpark(**config.compute)
     @pypi(packages=config.deps)
     @card(id="data", type="blank", refresh_interval=1)
     @step
