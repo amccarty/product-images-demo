@@ -50,7 +50,15 @@ class RetrieveDescriptions(ProjectFlow):
         # Run query
         card.start_query(SQL)
         start = time.time()
-        rows = current.snowflake.session().sql(SQL).collect(block=True)
+
+        # Use Metaflow Snowflake integration instead of Snowpark
+        from metaflow import Snowflake
+
+        with Snowflake(integration="snowflake") as cn:
+            with cn.cursor() as cur:
+                cur.execute(SQL)
+                rows = cur.fetchall()
+
         duration = int((time.time() - start) * 1000)
         card.query_done(duration, len(rows))
 
@@ -60,15 +68,18 @@ class RetrieveDescriptions(ProjectFlow):
 
         # Process rows
         for i, row in enumerate(rows):
+            # Extract description from tuple (first column)
+            description = row[0] if row[0] is not None else ""
+
             # filter descriptions that are too short
-            if len(row.DESCRIPTION.split()) > self.min_length:
+            if len(description.split()) > self.min_length:
                 # Detect language of the description
-                lang, score = langid.classify(row.DESCRIPTION)
+                lang, score = langid.classify(description)
                 stats[lang] += 1
                 if lang == "en":
-                    self.valid_products.append(row.DESCRIPTION)
+                    self.valid_products.append(description)
 
-                print(f"[{lang} {score}] {row.DESCRIPTION}")
+                print(f"[{lang} {score}] {description}")
             card.update_processing(stats, i)
 
         card.update_processing(stats)
