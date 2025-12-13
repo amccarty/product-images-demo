@@ -31,8 +31,8 @@ class RetrieveDescriptions(ProjectFlow):
     def start(self):
         self.next(self.query)
 
-    #@snowpark_card
-    #@snowpark(**config.compute)
+    # @snowpark_card
+    # @snowpark(**config.compute)
     @pypi(packages=config.deps)
     @card(id="data", type="blank", refresh_interval=1)
     @step
@@ -50,15 +50,7 @@ class RetrieveDescriptions(ProjectFlow):
         # Run query
         card.start_query(SQL)
         start = time.time()
-
-        # Use Metaflow Snowflake integration instead of Snowpark
-        from metaflow import Snowflake
-
-        with Snowflake(integration="snowflake") as cn:
-            with cn.cursor() as cur:
-                cur.execute(SQL)
-                rows = cur.fetchall()
-
+        rows = current.snowflake.session().sql(SQL).collect(block=True)
         duration = int((time.time() - start) * 1000)
         card.query_done(duration, len(rows))
 
@@ -68,18 +60,15 @@ class RetrieveDescriptions(ProjectFlow):
 
         # Process rows
         for i, row in enumerate(rows):
-            # Extract description from tuple (first column)
-            description = row[0] if row[0] is not None else ""
-
             # filter descriptions that are too short
-            if len(description.split()) > self.min_length:
+            if len(row.DESCRIPTION.split()) > self.min_length:
                 # Detect language of the description
-                lang, score = langid.classify(description)
+                lang, score = langid.classify(row.DESCRIPTION)
                 stats[lang] += 1
                 if lang == "en":
-                    self.valid_products.append(description)
+                    self.valid_products.append(row.DESCRIPTION)
 
-                print(f"[{lang} {score}] {description}")
+                print(f"[{lang} {score}] {row.DESCRIPTION}")
             card.update_processing(stats, i)
 
         card.update_processing(stats)
