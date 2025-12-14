@@ -1,6 +1,5 @@
 {
    "compute": {
-           "gpu": 1,
            "cpu": 8,
            "memory": 16000,
            "image": "python:3.11",
