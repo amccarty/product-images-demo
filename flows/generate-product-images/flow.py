@@ -36,6 +36,7 @@ class ProductImageFlow(ProjectFlow):
     product_run = Parameter("product-run")
     max_images = Parameter("max-images", default=100)
     num_parallel = Parameter("num-parallel", default=4)
+    prompt_style = Parameter("prompt-style", default="Ultra HD, 4K, cinematic composition.")
 
     @gpu_profile(interval=1)
     @kubernetes(**config.compute)
@@ -74,7 +75,7 @@ class ProductImageFlow(ProjectFlow):
         # Generate images in batches of IMG_BATCH_SIZE
         for i in range(0, len(self.input), IMG_BATCH_SIZE):
             t = time.time()
-            results = list(gen.prompt(self.input[i : i + IMG_BATCH_SIZE]))
+            results = list(gen.prompt(self.input[i : i + IMG_BATCH_SIZE], style=self.prompt_style))
             stats.append((time.time() - t) / IMG_BATCH_SIZE)
             images_card.update(results, i, stats)
             if i > self.max_images:
