@@ -1,13 +1,15 @@
 {
     "compute": {
-        "account": "DLUIATX-ANACONDA_PARTNER",
-        "user": "OB_POC_USER",
-        "role": "OB_POC",
-        "database": "ECOMMERCE_PRODUCT_DATA_SET",
-        "warehouse": "OB_POC",
-        "schema": "JSON",
+        "account": "pfb48862",
+        "user": "merced_user",
+        "role": "test_role",
+        "database": "TUTORIAL_DB",
+        "warehouse": "TUTORIAL_WAREHOUSE",
+        "schema": "PRODUCTS",
+        "stage": "product_stage",
+        "compute_pool": "tutorial_compute_pool",
         "image": "a3026273919071-mkb21361.registry.snowflakecomputing.com/tutorial_db/data_schema/tutorial_repository/my_job_image:latest",
-        "external_integration": ["snowflake-anaconda"]
+        "external_integration": ["snowflake"]
     },
     "deps": {
         "langid2": "1.1.7",
@@ -16,5 +18,4 @@
         "snowflake-snowpark-python": "1.40.0"
     }
 }
-
 
