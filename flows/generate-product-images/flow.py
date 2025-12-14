@@ -54,7 +54,7 @@ class ProductImageFlow(ProjectFlow):
     @card(id="images", type="blank")
     @gpu_profile(interval=1)
     @checkpoint(load_policy=None)
-    @kubernetes(compute_pool="obp-nebius-h100-1gpu", **config.compute)
+    @kubernetes(compute_pool="obp-h200-8gpu", **config.compute)
     @pypi(**config.deps)
     @step
     def generate_images(self):
