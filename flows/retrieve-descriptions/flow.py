@@ -41,8 +41,9 @@ class RetrieveDescriptions(ProjectFlow):
         import langid
 
         SQL = (
-            "select SCR:data:description as description "
-            "from amazon_product_chunk limit 2500"
+            "SELECT SCR:data:description as description "
+            "FROM ECOMMERCE_PRODUCT_DATA_SET.JSON.amazon_product_chunk "
+            "LIMIT 2500"
         )
 
         card = DataCard()
