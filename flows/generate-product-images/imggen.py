@@ -34,9 +34,9 @@ class ImgGen:
     def prompt(self, prompts_batch):
         import torch
 
-        STYLE = "Ultra HD, 4K, cinematic composition."
+        STYLE = "Ultra HD, 4K, silly composition, using a brand called LoopedIn, a western themed cowboy style company who's brand contains a lasso and/or cowboy hat. non-tech products have a classic cowboy feel and tech products have a clean, modern cowboy feel."
         PROMPT = "Product image without any text - style: {style}. Description: {desc}"
-        NEGATIVE = "text, labels, description"
+        NEGATIVE = "text, labesl, description"
         prompts = [PROMPT.format(style=STYLE, desc=p) for p in prompts_batch]
 
         images = self.pipe(
