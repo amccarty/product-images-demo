@@ -38,7 +38,7 @@ class ProductImageFlow(ProjectFlow):
     num_parallel = Parameter("num-parallel", default=4)
 
     @gpu_profile(interval=1)
-    @kubernetes(compute_pool="obp-h200-8gpu", **config.compute)
+    @kubernetes(compute_pool="obp-h200-8gpu")
     @checkpoint(load_policy=None)
     @pypi(**config.deps)
     @step
@@ -54,7 +54,7 @@ class ProductImageFlow(ProjectFlow):
     @card(id="images", type="blank")
     @gpu_profile(interval=1)
     @checkpoint(load_policy=None)
-    @kubernetes(compute_pool="obp-h200-8gpu", **config.compute)
+    @kubernetes(compute_pool="obp-h200-8gpu")
     @pypi(**config.deps)
     @step
     def generate_images(self):
