@@ -1,12 +1,12 @@
 {
    "compute": {
            "gpu": 4,
-           "cpu": 32,
-           "memory": 320000,
+           "cpu": 120,
+           "memory": 640000,
            "compute_pool": "obp-h100-8gpu",
            "image": "python:3.11",
-           "shared_memory": 320000,
-           "tmpfs_size": 320000,
+           "shared_memory": 640000,
+           "tmpfs_size": 640000,
            "use_tmpfs": true,
            "tmpfs_path": "/model"
        },
