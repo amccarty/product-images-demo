@@ -16,3 +16,5 @@ This example demonstrates:
 
 Currently, a state-of-the-art image generation model, `Qwen-Image` is used to generate
 product images, relying on efficient parallelized autonomous inferencing on Outerbounds.
+
+
